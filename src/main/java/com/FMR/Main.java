@@ -19,7 +19,7 @@ import com.apptasticsoftware.rssreader.Item;
 
 public class Main
 {
-    public static final String NRC_CURRENT = "https://www.nrc.gov/rss/reactorstatus.xml";
+    public static final String NRC_CURRENT = "https://www.nrc.gov/public-involve/rss?feed=plant-status";
 
 	public static OkHttpClient _NRC_CLIENT;
 	public static RssReader _NRC_RSSREADER;
