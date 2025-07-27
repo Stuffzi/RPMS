@@ -1,15 +1,23 @@
 package com.FMR;
 
+@SuppressWarnings("unused")
 public class Reactor {
-    private String _name;
-    private String _model;
-    private int _MWt;
-    private int _MWe;
-    private int[] _powerHistory; //First is the most recent
+    //The following are not supposed to change
+    private final String _name;
+    private final String _model;
+    private final int _MWt;
+    private final int _MWe;
+
+    //The following is supposed to change
+    private final int[] _powerHistory; //First is the most recent, stores in %
 
     public Reactor(String name, String model, int MWt, int MWe)
     {
-
+        _name = name;
+        _model = model;
+        _MWt = MWt;
+        _MWe = MWe;
+        _powerHistory = new int[6];
     }
 
     public void setNewPower(int newPower)
