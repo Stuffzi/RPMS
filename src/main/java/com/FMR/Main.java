@@ -8,7 +8,7 @@ import java.util.List;
 
 
 //OkHTTP
-//import com.opencsv.exceptions.CsvValidationException;
+import com.opencsv.exceptions.CsvValidationException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -21,7 +21,7 @@ import com.apptasticsoftware.rssreader.Item;
 
 //OpenCSV
 import com.opencsv.CSVReader;
-//import com.opencsv.CSVIterator;
+import com.opencsv.CSVIterator;
 
 /**
  * Everything is fully accessable because this is meant to be a temprorary messanger object.
@@ -65,10 +65,10 @@ public class Main
 	public static CSVReader _IAEA_CSVReader;
 
 	public static ArrayList<Reactor> _roster;
-	//private static IAEAReferencePass _ERROR_REACTOR;
+	private static IAEAReferencePass _ERROR_REACTOR;
 
 
-	/*private static IAEAReferencePass getReactorData(String rName)
+	private static IAEAReferencePass getReactorData(String rName)
 	{
 		//step 1: format the name so that it matches what's in the IAEA database
 		rName = rName.toUpperCase();
@@ -81,7 +81,7 @@ public class Main
 		{
 			try
 			{
-				if (!((row = _IAEA_CSVReader.readNext()) != null))
+				if ((row = _IAEA_CSVReader.readNext()) == null)
 				{
 					System.out.println("[getReactorData] Could not find requested reactor '" + rName + "', ensure" +
 							"IAEA_REFERENCE is up to date and not corrupted.");
@@ -91,11 +91,7 @@ public class Main
 				{
 					break;
 				}
-			} catch (IOException e)
-			{
-				System.out.println(e + "\n[getReactorData] Possible data corruption in the IAEA_REFERENCE. Consider " +
-						"re-downloading it.");
-			} catch (CsvValidationException e)
+			} catch (IOException | CsvValidationException e)
 			{
 				System.out.println(e + "\n[getReactorData] Possible data corruption in the IAEA_REFERENCE. Consider " +
 						"re-downloading it.");
@@ -104,7 +100,7 @@ public class Main
 		}
 
 		return returner;
-	}*/
+	}
 
 
     private static void updateCurrent()
@@ -182,7 +178,7 @@ public class Main
 		}
 		_roster = new ArrayList<>();
 
-		//_ERROR_REACTOR = new IAEAReferencePass("NULL");
+		_ERROR_REACTOR = new IAEAReferencePass("NULL");
 
 		updateCurrent();
     }
